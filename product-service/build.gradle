@@ -1,0 +1,55 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.1.4'
+	id 'io.spring.dependency-management' version '1.1.3'
+}
+
+group = 'dev.sophea'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('springCloudVersion', "2022.0.4")
+}
+
+dependencies {
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	//implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+	// mapstruct and postgres sql
+	annotationProcessor group: 'org.projectlombok', name: 'lombok-mapstruct-binding', version: '0.2.0'
+	annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.5.5.Final'
+	implementation group: 'org.mapstruct', name: 'mapstruct', version: '1.5.5.Final'
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'org.postgresql:postgresql'
+	annotationProcessor 'org.projectlombok:lombok'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

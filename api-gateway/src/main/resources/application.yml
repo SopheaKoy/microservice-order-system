@@ -1,0 +1,57 @@
+#Server Port
+server:
+  port: 8082
+
+#Application Name
+spring:
+  application:
+    name: api-gateway
+
+
+  #Configuration Security
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: "http://localhost:8083/oauth2/jwks"
+
+  main:
+    allow-bean-definition-overriding: true
+  #  security:
+#    oauth2:
+#      client:
+#        registration:
+#          gateway:
+#            provider: my-provider
+#            client-id: public-client-react-app
+#            client-secret: my-secret
+#            authorization-grant-type: authorization_code
+#            redirect-uri: "http://127.0.0.1:8090/login/oauth2/code/{registrationId}"
+#            scope:
+#              - openid
+#        provider:
+#          provider-id:
+#          issuer-uri: "http://localhost:8083/oauth2/jwks"
+
+  #Configuration API Gateway and Configuration Route
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+#      routes:
+#        - id:
+#          uri: http://localhost:8080/api/v1/products
+#        - predicates:
+#        - filters:
+#            - name:
+
+#Confiuration Eureka Client
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+
+

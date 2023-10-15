@@ -1,0 +1,33 @@
+#Server Port
+server:
+  port: 8081
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  # Configuration Mongo DB
+  data:
+    mongodb:
+      port: 27017
+      database: user_db
+      host: localhost
+
+  #Configuration Security Oauth 2
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: http://localhost:8084/oauth2/jwks
+
+  #Application Name
+  application:
+    name: user-service
+
+# Configuration Eureka Client
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+
+

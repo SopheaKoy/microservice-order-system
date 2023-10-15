@@ -1,0 +1,29 @@
+#server port
+server:
+  port: 8888
+  servlet:
+    context-path: /config
+
+#application name
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: native , vault , git
+
+  cloud:
+    config:
+      server:
+        vault:
+          host: 127.0.0.1
+          port: 8200
+          order: 1
+          authentication: TOKEN
+          token:
+          kv-version: 2
+        git:
+          clone-on-start: true
+          uri: https://github.com/SopheaKoy/config-server
+          order: 2
+          username:
+          password:

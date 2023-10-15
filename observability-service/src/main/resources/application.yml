@@ -1,0 +1,16 @@
+#applicaion name
+spring:
+  application:
+    name: observability-service
+
+# configuration actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health , prometheus
+
+  tracing:
+    sampling:
+      probability: 1.0
+

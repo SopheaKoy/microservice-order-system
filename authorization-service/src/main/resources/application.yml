@@ -1,0 +1,14 @@
+#Server Port
+server:
+  port: 8084
+
+# Configuration Eureka Client
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+#Application
+spring:
+  application:
+    name: authorization-service

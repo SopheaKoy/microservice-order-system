@@ -1,0 +1,66 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.1.4'
+    id 'io.spring.dependency-management' version '1.1.3'
+}
+
+group = 'dev.sophea'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    set('springCloudVersion', "2022.0.4")
+}
+
+
+dependencies {
+
+    // config client
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
+    // Cloud Bootstrap
+    implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
+
+    // Spring OAuth 2 Resource Server
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+
+    // Spring Mongo DB Reactive
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
+
+    //Spring Web Flux
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    // Spring Eureka Discovery Client
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+    // Lombok & MapStruct
+    annotationProcessor group: 'org.projectlombok', name: 'lombok-mapstruct-binding', version: '0.2.0'
+    annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.5.5.Final'
+    implementation group: 'org.mapstruct', name: 'mapstruct', version: '1.5.5.Final'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
